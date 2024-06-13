@@ -4,9 +4,11 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { extendTheme } from "@chakra-ui/react";
 import { mode } from "@chakra-ui/theme-tools";
 
+import { BrowserRouter } from "react-router-dom";
+import GlobalStyles from "./components/GlobalStyles/GlobalStyles.jsx";
+
 import App from "./App.jsx";
 import "./index.css";
-import { BrowserRouter } from "react-router-dom";
 
 // Config theme
 const styles = {
@@ -29,7 +31,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <ChakraProvider theme={theme}>
-        <App />
+        <GlobalStyles>
+          <App />
+        </GlobalStyles>
       </ChakraProvider>
     </BrowserRouter>
   </React.StrictMode>
