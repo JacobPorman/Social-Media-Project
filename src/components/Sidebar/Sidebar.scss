@@ -4,19 +4,15 @@
 }
 
 .sidebar-container {
-    border-right: 0.1px solid rgb(230, 227, 227);
+    border-right: 0.1px solid rgb(48, 44, 44);
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     transition: all 0.3s ease;
-
+    position: relative;
     .top {
         display: flex;
         align-items: center;
         justify-content: center;
         padding: 20px;
-        
     }
 
     .logo {
@@ -62,10 +58,9 @@
 
                     span {
                         font-size: 13px;
-                        font-weight: 600;
                         color: #fff;
                         margin-left: 22px;
-                        font-size: 17px;
+                        font-size: 16px;
                         transition: opacity 0.3s ease;
                     }
 
@@ -81,10 +76,14 @@
     }
 
     .footer {
+        bottom: 0;
+        position: absolute;
+        width: 100%;
         .sidebar-list {
             list-style: none;
             margin: 0;
             padding: 10px;
+            width: 100%;
             li {
                 height: 100%;
                 display: flex;
@@ -115,10 +114,9 @@
 
                     span {
                         font-size: 13px;
-                        font-weight: 600;
                         color: #fff;
                         margin-left: 22px;
-                        font-size: 17px;
+                        font-size: 16px;
                         transition: opacity 0.3s ease;
                     }
                 }
