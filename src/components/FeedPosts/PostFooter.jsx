@@ -14,7 +14,7 @@ import {
   UnlikeLogo,
 } from "../../assets/constants_ 2";
 
-const PostFooter = () => {
+const PostFooter = ({ username }) => {
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(1000);
 
@@ -29,7 +29,7 @@ const PostFooter = () => {
   };
 
   return (
-    <>
+    <Box mb={10}>
       <Flex alignItems={"center"} gap={4} w={"full"} pt={0} mb={2} mt={4}>
         <Box onClick={handleLike} cursor={"pointer"} fontSize={18}>
           {!liked ? <NotificationsLogo /> : <UnlikeLogo />}
@@ -46,7 +46,7 @@ const PostFooter = () => {
       </Text>
 
       <Text fontSize={"sm"} fontWeight={700}>
-        khianhyeu_trieutraitimtanvo_{" "}
+        {username}{" "}
         <Text as={"span"} fontWeight={400}>
           Feeling good
         </Text>
@@ -84,7 +84,7 @@ const PostFooter = () => {
           </InputRightElement>
         </InputGroup>
       </Flex>
-    </>
+    </Box>
   );
 };
 
