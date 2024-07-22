@@ -1,103 +1,167 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import { Link as RouterLink } from "react-router-dom";
+
+import { Avatar, Box, Flex, Link, Tooltip } from "@chakra-ui/react";
 import {
+  CreatePostLogo,
   InstagramLogo,
-  InstagramLogoMobile,
-  Discovery,
-  Home,
-  Search,
-  Reels,
-  Messenger,
-  Notification,
-  Setting,
+  InstagramMobileLogo,
+  MessagesLogo,
+  NotificationsLogo,
+  ReelsLogo,
+  SearchLogo,
 } from "../../assets/contants";
-import "./Sidebar.scss";
-import Avatar from "../../assets/huan.jpg";
+import { AiFillHome } from "react-icons/ai";
+import { BiLogOut } from "react-icons/bi";
 
 const Sidebar = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  // const [isMobile, setIsMobile] = useState(window.innerWidth < 768);s
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setIsMobile(window.innerWidth < 768);
+  //   };
 
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-  const sideBarItems = [
+  //   window.addEventListener("resize", handleResize);
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
+
+  const sidebarItems = [
     {
-      icon: <Home />,
+      icon: <AiFillHome size={25} />,
       text: "Home",
       link: "/",
     },
     {
-      icon: <Search />,
+      icon: <SearchLogo />,
       text: "Search",
     },
+
     {
-      icon: <Discovery />,
-      text: "Discovery",
-    },
-    {
-      icon: <Reels />,
+      icon: <ReelsLogo />,
       text: "Reels",
     },
     {
-      icon: <Messenger />,
+      icon: <MessagesLogo />,
       text: "Messenger",
     },
     {
-      icon: <Notification />,
-      text: "Notification",
+      icon: <NotificationsLogo />,
+      text: "Notifications",
     },
     {
-      icon: <img src={Avatar} />,
-      text: "Nguyễn Hữu Huân",
+      icon: <CreatePostLogo />,
+      text: "Create",
     },
-  ];
-  const SidebarFooter = [
     {
-      icon: <Setting />,
-      text: "Setting",
+      icon: <Avatar size={"sm"} name="Jacob Nguyen" src="/profilepic_2.jpg" />,
+      text: "Profile",
+      link: "/jacobnguyen",
     },
   ];
+
+  // const SidebarFooter = [
+  //   {
+  //     icon: <Setting />,
+  //     text: "Setting",
+  //   },
+  // ];
   return (
-    <div className="sidebar-container">
-      <div className="top">
-        <div className="logo">
-          <RouterLink to="/">
-            {isMobile ? <InstagramLogoMobile /> : <InstagramLogo />}
-          </RouterLink>
-        </div>
-      </div>
-      <div className="center">
-        <ul className="sidebar-list">
-          {sideBarItems.map((item, index) => (
-            <li key={index} className="sidebar-item">
-              <RouterLink to={item.link} className="sidebar-link">
+    <Box
+      height={"100vh"}
+      borderRight={"1px solid"}
+      borderColor={"whiteAlpha.300"}
+      py={8}
+      position={"sticky"}
+      top={0}
+      left={0}
+      px={{ base: 2, md: 4 }}
+    >
+      <Flex direction={"column"} gap={10} w={"full"} height={"full"}>
+        <Link
+          to={"/"}
+          as={RouterLink}
+          pl={2}
+          display={{ base: "none", md: "block" }}
+          cursor={"pointer"}
+        >
+          <InstagramLogo />
+        </Link>
+
+        <Link
+          to={"/"}
+          as={RouterLink}
+          p={2}
+          display={{ base: "block", md: "none" }}
+          borderRadius={6}
+          _hover={{
+            bg: "whiteAlpha.200",
+          }}
+          w={10}
+          cursor={"pointer"}
+        >
+          <InstagramMobileLogo />
+        </Link>
+
+        <Flex direction={"column"} gap={5} cursor={"pointer"}>
+          {sidebarItems.map((item, index) => (
+            <Tooltip
+              key={index}
+              hasArrow
+              label={item.text}
+              placement="right"
+              ml={1}
+              openDelay={500}
+              display={{ base: "block", md: "none" }}
+            >
+              <Link
+                display={"flex"}
+                to={item.link || null}
+                as={RouterLink}
+                alignItems={"center"}
+                gap={4}
+                _hover={{ bg: "whiteAlpha.400" }}
+                borderRadius={6}
+                p={2}
+                w={{ base: 10, md: "full" }}
+                justifyContent={{ base: "center", md: "flex-start" }}
+              >
                 {item.icon}
-                <span className="sidebar-text">{item.text}</span>
-              </RouterLink>
-            </li>
+                <Box display={{ base: "none", md: "block" }}>{item.text}</Box>
+              </Link>
+            </Tooltip>
           ))}
-        </ul>
-      </div>
-      <div className="footer">
-        <ul className="sidebar-list">
-          {SidebarFooter.map((item, index) => (
-            <li key={index} className="sidebar-item">
-              <RouterLink to={item.link} className="sidebar-link">
-                {item.icon}
-                <span className="sidebar-text">{item.text}</span>
-              </RouterLink>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+        </Flex>
+
+        <Tooltip
+          hasArrow
+          label={"Logout"}
+          placement="right"
+          ml={1}
+          openDelay={500}
+          display={{ base: "block", md: "none" }}
+        >
+          <Link
+            display={"flex"}
+            to={"/auth"}
+            as={RouterLink}
+            alignItems={"center"}
+            gap={4}
+            _hover={{ bg: "whiteAlpha.400" }}
+            borderRadius={6}
+            p={2}
+            w={{ base: 10, md: "full" }}
+            mt={"auto"}
+            justifyContent={{ base: "center", md: "flex-start" }}
+          >
+            <BiLogOut size={25} />
+            <Box display={{ base: "none", md: "block" }}>Logout</Box>
+          </Link>
+        </Tooltip>
+      </Flex>
+    </Box>
   );
 };
 

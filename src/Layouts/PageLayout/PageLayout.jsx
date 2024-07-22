@@ -1,22 +1,25 @@
+import { Box, Flex } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
 import Sidebar from "../../components/Sidebar/Sidebar";
-import "./PageLayout.scss"; // Import file SCSS của riêng bạn cho PageLayout
 
 const PageLayout = ({ children }) => {
   const { pathname } = useLocation();
-  const isAuthPage = pathname === "/auth";
+  // const isAuthPage = pathname === "/auth";
 
   return (
-    <div className="page-layout">
-      {!isAuthPage && (
-        <div className="sidebar">
+    <Flex>
+      {/* Sidebar on the left */}
+      {pathname !== "/auth" ? (
+        <Box w={{ base: "70px", md: "240px" }}>
           <Sidebar />
-        </div>
-      )}
-      <div className={`main-content ${isAuthPage ? "full-width" : ""}`}>
+        </Box>
+      ) : null}
+      {/* The page content on the right */}
+
+      <Box flex={1} w={{ base: "calc(100% - 70px)", md: "calc(100% - 240px)" }}>
         {children}
-      </div>
-    </div>
+      </Box>
+    </Flex>
   );
 };
 
