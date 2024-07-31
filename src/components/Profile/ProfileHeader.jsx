@@ -23,7 +23,7 @@ const ProfileHeader = () => {
       >
         <Avatar
           name="As a progammer"
-          src="/profilepic.png"
+          src="/profilepic_2.jpg"
           alt="As a progammer logo"
         />
       </AvatarGroup>

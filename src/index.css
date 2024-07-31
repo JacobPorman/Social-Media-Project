@@ -1,2 +1,15 @@
 /* index.css */
 @import "./components/GlobalStyles/GlobalStyles.scss";
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a3a0a0;
+  border-radius: 10px;
+}
